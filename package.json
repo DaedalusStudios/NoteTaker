@@ -1,0 +1,12 @@
+{
+  "name": "miniature-eureka",
+  "version": "1.0.0",
+  "description": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)   ## Description   This application was developed during bootcamp to write and save notes.  Later you can retrieved the saved note data.  All data is stored in JSON files.  It is my job to create the backend, then deploy this to Keroku   ## Table of Contents   * [Installation](#installation)   * [Usage](#usage)   * [License](#license)   * [Contribution](#contribution)   * [Tests](#tests)   * [Questions](#questions)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
