@@ -16,6 +16,12 @@ body {
   cursor: pointer;
 }
 
+.note-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .note-textarea,
 .note-title {
   color: #000000;

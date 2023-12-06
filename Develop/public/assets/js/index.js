@@ -28,13 +28,18 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
-const getNotes = () =>
+var getNotes = () => 
   fetch('/api/notes', {
     method: 'GET',
     headers: {
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+      'Expires': '0',
       'Content-Type': 'application/json'
     }
+    
   });
+  
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -78,9 +83,11 @@ const handleNoteSave = () => {
     text: noteText.value
   };
   saveNote(newNote).then(() => {
-    getAndRenderNotes();
     renderActiveNote();
+  }).then(() => {
+    getAndRenderNotes();
   });
+  
 };
 
 // Delete the clicked note
@@ -98,6 +105,7 @@ const handleNoteDelete = (e) => {
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
+    getAndRenderNotes();
   });
 };
 
@@ -113,6 +121,7 @@ const handleNewNoteView = (e) => {
   activeNote = {};
   show(clearBtn);
   renderActiveNote();
+  console.log('new note');
 };
 
 // Renders the appropriate buttons based on the state of the form
@@ -129,12 +138,16 @@ const handleRenderBtns = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+  
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
+  
 
-  let noteListItems = [];
+  var noteListItems = [];
+  console.log(noteListItems);
+
 
   // Returns HTML element with or without a delete button
   const createLi = (text, delBtn = true) => {
@@ -161,7 +174,7 @@ const renderNoteList = async (notes) => {
 
       liEl.append(delBtnEl);
     }
-
+    
     return liEl;
   };
 
@@ -182,7 +195,7 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
-const getAndRenderNotes = () => getNotes().then(renderNoteList);
+var getAndRenderNotes = () => {getNotes().then((renderNoteList)).then(console.log(`rendered`))};
 
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
