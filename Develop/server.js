@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const fsp = require('fs').promises;
 const uniqid = require('uniqid');
-const PORT = 3001;
+const PORT = 80;
 
 const app = express();
 
